@@ -245,6 +245,8 @@ No version checks will be performed if it is found using any other method.])
 	elif test "x${[try_][$1]}" = "xno"; then
 		:
 	else
+		# These settings are given by the user and thus MUST be correct :-)
+		have_[$1]=yes
 		[$1][_LIBS]="-L${[try_][$1]}/lib -l$(echo "$2" | sed 's/^lib//')"
 		[$1][_CFLAGS]="-I${[try_][$1]}/include"
 	fi
