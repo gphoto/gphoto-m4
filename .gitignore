@@ -1,0 +1,4 @@
+# If someone is using the compatibility Makefile.am, these files will
+# be generated here by autoconf and configure, respectively.
+/Makefile.in
+/Makefile
