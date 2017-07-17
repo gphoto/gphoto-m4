@@ -83,7 +83,13 @@ respective software's `gphoto-m4/` subdirectory. The options are:
          the `gphoto-m4` repository by including the complete history
          of the `gphoto2` repository.
 
-         FIXME: Is this what `git subtree split` should avoid?
+         Note this cannot be avoided by using `git subtree split`:
+         That is executed internally by `git subtree push`.
+
+         So it appears that using `git subtree push` will push all
+         projects' commit history into the `gphoto-m4` repo.
+
+         That is if not a showstopper, then at least very ugly.
 
 For the time being, we manually update and synchronize the files.
 
