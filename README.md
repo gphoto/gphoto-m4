@@ -78,15 +78,26 @@ respective software's `gphoto-m4/` subdirectory. The options are:
        * No rebasing possible across pulls to `gphoto-m4/`. Not really
          necessary anyway, though.
 
+       * Pushes of changes to from, say, `gphoto2/gphoto-m4` to
+         upstream `gphoto-m4` create a lot of commit history noise in
+         the `gphoto-m4` repository by including the complete history
+         of the `gphoto2` repository.
+
+         FIXME: Is this what `git subtree split` should avoid?
+
 For the time being, we manually update and synchronize the files.
 
 
 Manually syncing and updating files
 -----------------------------------
 
+This section has not been written yet.
+
 
 Using `git submodule`
 ---------------------
+
+This section has not been written yet.
 
 
 Using `git subtree`
