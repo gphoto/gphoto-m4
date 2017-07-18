@@ -30,9 +30,15 @@
 #   2    any other error
 
 
+########################################################################
+
+
 import hashlib
 import os
 import sys
+
+
+########################################################################
 
 
 class File(object):
@@ -53,6 +59,9 @@ class File(object):
 
     def __str__(self):
         return '%s %s' % (self.digest, self.fname)
+
+
+########################################################################
 
 
 class BaseTree(object):
@@ -94,6 +103,9 @@ class BaseTree(object):
         return files
 
 
+########################################################################
+
+
 class GitTree(BaseTree):
 
     def __init__(self, top):
@@ -102,6 +114,9 @@ class GitTree(BaseTree):
             raise AssertionError("File or directory does not exist: %s" %
                                  repr(path))
         super(GitTree, self).__init__(top)
+
+
+########################################################################
 
 
 class NotGitTree(BaseTree):
@@ -114,12 +129,18 @@ class NotGitTree(BaseTree):
         super(NotGitTree, self).__init__(top)
 
 
+########################################################################
+
+
 def scan_tree(top):
     for dirpath, dirnames, filenames in os.walk(top):
         if os.path.basename(dirpath) == 'gphoto-m4':
             if 'gp-camlibs.m4' not in filenames:
                 continue
             yield (dirpath, NotGitTree(dirpath))
+
+
+########################################################################
 
 
 def print_help():
@@ -142,6 +163,9 @@ def print_help():
             print(line[2:])
 
 
+########################################################################
+
+
 class ResultTable(object):
 
     def __init__(self):
@@ -162,6 +186,9 @@ class ResultTable(object):
 
     def close(self):
         pass
+
+
+########################################################################
 
 
 class ResultLine(object):
@@ -210,6 +237,9 @@ class ResultLine(object):
 
     def get_fpath(self, index):
         return self.__fpaths[index]
+
+
+########################################################################
 
 
 def cmd_print_report(result_table, all_files, treelist, trees):
@@ -293,6 +323,9 @@ def cmd_print_report(result_table, all_files, treelist, trees):
     sys.exit(exit_code)
 
 
+########################################################################
+
+
 def print_diff_commands(diff_params):
     print("# List of diff commands.  You can pipe these into")
     print("#     | sh | colordiff | less -r '+/comparing '")
@@ -317,6 +350,9 @@ def print_diff_commands(diff_params):
         print("""diff -u --label "%s" %s --label "%s" %s"""
               % (orig_label, orig_fpath,
                  other_label, other_fpath))
+
+
+########################################################################
 
 
 def gphoto_m4_sync(dir_list, print_diffs):
@@ -427,6 +463,8 @@ def gphoto_m4_sync(dir_list, print_diffs):
         sys.exit(0)
 
 
+#######################################################################
+
 
 def main(args):
     if (args == []):
@@ -457,5 +495,11 @@ def main(args):
     gphoto_m4_sync(dir_list, arg_diff)
 
 
+########################################################################
+
+
 if __name__ == '__main__':
     main(sys.argv[1:])
+
+
+########################################################################
