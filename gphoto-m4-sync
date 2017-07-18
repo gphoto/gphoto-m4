@@ -97,14 +97,20 @@ class BaseTree(object):
 class GitTree(BaseTree):
 
     def __init__(self, top):
-        assert(os.path.exists(os.path.join(top, '.git')))
+        path = os.path.join(top, '.git')
+        if not os.path.exists(path):
+            raise AssertionError("File or directory does not exist: %s" %
+                                 repr(path))
         super(GitTree, self).__init__(top)
 
 
 class NotGitTree(BaseTree):
 
     def __init__(self, top):
-        assert(not os.path.exists(os.path.join(top, '.git')))
+        path = os.path.join(top, '.git')
+        if os.path.exists(path):
+            raise AssertionError("File or directory does exist: %s" %
+                                 repr(path))
         super(NotGitTree, self).__init__(top)
 
 
