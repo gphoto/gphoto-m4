@@ -97,14 +97,14 @@ class BaseTree(object):
 class GitTree(BaseTree):
 
     def __init__(self, top):
-        assert(os.path.isdir(os.path.join(top, '.git')))
+        assert(os.path.exists(os.path.join(top, '.git')))
         super(GitTree, self).__init__(top)
 
 
 class NotGitTree(BaseTree):
 
     def __init__(self, top):
-        assert(not os.path.isdir(os.path.join(top, '.git')))
+        assert(not os.path.exists(os.path.join(top, '.git')))
         super(NotGitTree, self).__init__(top)
 
 
@@ -316,7 +316,7 @@ def print_diff_commands(diff_params):
 def gphoto_m4_sync(dir_list, print_diffs):
 
     # List all files in this clone of the `gphoto-m4` repository
-    orig_top = os.path.abspath(os.path.dirname(__file__))
+    orig_top = os.path.dirname(os.path.abspath(__file__))
     orig_tree = GitTree(orig_top)
 
     # For each `gphoto-m4` directory given on the command line, find
